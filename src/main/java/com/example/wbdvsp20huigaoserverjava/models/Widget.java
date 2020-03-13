@@ -1,16 +1,33 @@
 package com.example.wbdvsp20huigaoserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="widgets")
 public class Widget {
 
-
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String title;
-    private String topicId;
     private String type = "HEADING";
     private int size = 2;
     private String text;
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
 
     public String getText() {
         return text;
@@ -36,19 +53,13 @@ public class Widget {
         this.type = type;
     }
 
-    public String getTopicId() {
-        return topicId;
-    }
 
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
-    }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,7 +74,7 @@ public class Widget {
     public Widget() {
     }
 
-    public Widget(String id, String title) {
+    public Widget(Integer id, String title) {
         this.id = id;
         this.title = title;
     }

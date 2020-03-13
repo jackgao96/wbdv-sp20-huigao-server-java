@@ -16,7 +16,7 @@ public class TopicService {
     @Autowired
     WidgetRepository widgetRepository;
 
-    public List<Topic> findTopicsForLesson(Integer lid){
+    public List<Topic> findTopicsForLesson(String lid){
         if(lid != null){
             return topicRepository.findTopicsForLesson(lid);
         }

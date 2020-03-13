@@ -57,7 +57,7 @@ public class TopicController {
 
     @GetMapping("/api/lessons/{lessonId}/topics")
     public List<Topic> findTopicsForLesson(
-            @PathVariable("lessonId") Integer lessonId
+            @PathVariable("lessonId") String lessonId
     ){
         return topicService.findTopicsForLesson(lessonId);
     }

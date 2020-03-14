@@ -17,11 +17,9 @@ public class TopicService {
     WidgetRepository widgetRepository;
 
     public List<Topic> findTopicsForLesson(String lid){
-        if(lid != null){
-            return topicRepository.findTopicsForLesson(lid);
-        }
-        return null;
+        return topicRepository.findTopicsForLesson(lid);
     }
+
     public int deleteTopic(Integer tid){
         if(!topicRepository.findById(tid).isPresent()){
             return 0;

@@ -54,11 +54,9 @@ public class TopicController {
         newTopic.setLessonId(lessonId);
         return topicService.createTopic(newTopic);
     }
-
     @GetMapping("/api/lessons/{lessonId}/topics")
     public List<Topic> findTopicsForLesson(
-            @PathVariable("lessonId") String lessonId
-    ){
+            @PathVariable("lessonId") String lessonId){
         return topicService.findTopicsForLesson(lessonId);
     }
 }

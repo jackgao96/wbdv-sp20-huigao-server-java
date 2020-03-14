@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -64,8 +65,15 @@ public class WidgetController {
     }
 
     @GetMapping("/api/topics/{tid}/widgets")
-    public List<Widget> findWidgetForTopic(@PathVariable("tid") Integer topicId){
-        return service.findWidgetForTopic(topicId);
+    public List<Widget> findWidgetForTopic(@PathVariable("tid") String topicId){
+        int tid;
+        try{
+            tid = Integer.parseInt(topicId);
+            return service.findWidgetForTopic(tid);
+        }catch (NumberFormatException e){
+            List<Widget> result = new ArrayList<>();
+            return result;
+        }
     }
     @PutMapping("/api/widgets/{widgetId}")
     public int updateWidget(@PathVariable("widgetId") Integer wid, @RequestBody Widget widget){
